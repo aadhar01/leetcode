@@ -1,0 +1,29 @@
+# the code for the problem
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if(len(prices) < 2):
+            return 0
+        index = 0;
+        max = prices[0]
+        min = prices[0]
+        ans = 0
+        
+        # for loop from the second element to the end of the list
+        for index in range(1, len(prices)):   
+            #checking if the current list value is current than the max
+            if(prices[index] > max):
+                max = prices[index]
+                
+                # I check is ans if less than the , because min is changing in other 
+                # if condition also
+                if(ans < max - min):
+                    ans = max - min
+                    
+            # as we have to keep max in the future date, we assign max also 
+            if(prices[index] < min):
+                min = prices[index]
+                max = prices[index]
+        
+        return ans
+        
