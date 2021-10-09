@@ -1,0 +1,47 @@
+# This is the extension to the problem the Best time to buy stock and sell
+
+"""
+what to do?
+  find the maximum profit 
+  what I did:
+  person can buy the stock and then sell when next time stock prices rises
+"""
+
+# code
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        # both are assigned the first list element value 
+        buy = prices[0]
+        sell = prices[0]
+        
+        # profit definition
+        profit = sell - buy 
+        
+        # for loop from 1 to len(), range exclude the upperbound
+        for index in range(1,len(prices)):
+            
+            # here i check ig the sell price i have is less the current day price i.e. prices[index]
+            if sell < prices[index]:
+                sell = prices[index]
+                profit += sell - buy
+                # as i have to keep profit maximum, i shift both sell and buy to the sell day price
+                # because 
+                """
+                [7,1,5,6,4]
+                here the profit 
+                prices[3] - prices[1] = 6 - 1 = 5
+                what i did
+                  prices[2] - prices[1] = 5 - 1 = 4
+                  prices[3] - prices[2 ] = 6 - 5 = 1
+                  there summation = 4 + 1 = 5
+                  
+                """
+                buy = prices[index]
+                
+            if buy > prices[index]:
+                buy = prices[index]
+                sell = prices[index]
+                
+            
+        return profit
