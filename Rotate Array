@@ -1,0 +1,16 @@
+# given an array, and an integer k, rotate array k times 
+
+
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        # i stored the the last k elements in the array
+        list_k = nums[len(nums)-k%len(nums):]
+        # shifting array elements from the (k-1 place -> 0 place) to the last place till k place 
+        for index in range(len(nums) - k%len(nums) -1, -1, -1):
+            nums[index + k%len(nums)] = nums[index]
+            
+        for index in range(len(list_k)):
+            nums[index] = list_k[index]
