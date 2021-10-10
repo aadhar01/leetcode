@@ -1,0 +1,14 @@
+# In this problem there is a single integer which is unique and rest are two in number we have to find the that unique number
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        # As the list constraint is non empty, i have taken the minimum list length as 1
+        if len(nums) == 1:
+            return nums[0]
+        # the Counter of the module Collection has been used which is kind of hashmap 
+        count = Counter(nums)
+        # this is just searching in the counter
+        for key in count.keys():
+            if count[key] == 1:
+                return key
+        
