@@ -1,0 +1,39 @@
+two arrays are given and in this problem we have to find the intersection of these arrays
+and to return an array which is the interaction of the elements, return only unique elements
+
+# In this solution we sort the arrays, and then the pointers on the individual array move accordingly
+
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        
+        nums1.sort()
+        nums2.sort()
+        # pointers to the array, i for the nums1 and j for the nums2
+        i = 0
+        j = 0
+        l1 = len(nums1)
+        l2 = len(nums2)
+        
+        # the resultant array that will return 
+        arr = []
+        
+        while i < l1 and j < l2:
+            
+            if nums1[i] < nums2[j]:
+                i += 1
+            elif nums1[i] > nums2[j]:
+                j += 1
+            else:
+                arr.append(nums1[i])
+                temp = nums1[i]
+                # these while loops are for the uniqueness return it will move iterator till the unique element is not found or traverse to end of the array 
+                while i < l1 and nums1[i] == temp:
+                    i = i + 1
+                while j < l2 and nums2[j] == temp:
+                    j = j + 1
+                    
+        return arr
+                
+                
+        
+        
