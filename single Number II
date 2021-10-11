@@ -1,0 +1,41 @@
+#this is same as the Single Number Problem, but we have the three times repeating numbers and to find a single occurance integer
+# Same solution as the Single Number can also be used but the Bitwise is better, memory O(1) 
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        if len(nums) == 1:
+            return nums[0]
+        
+        # As the number is integer therefore the bit size is 32 bits
+        arr = [0]*32
+        value = 0
+        # this is to keep track of the number of negative nuumbers
+        negCount = 0
+        
+        for integer in nums:
+            # made negative integer positive 
+            if integer < 0:
+                integer = -1 * integer
+                # counting negcount
+                negCount += 1 
+                
+            # adding the number of bits in the list arr {0 index, 0th place bits}
+            for shift in range(0,32):
+                if(shift > 0):
+                    integer = integer >> 1    
+                arr[shift] += integer & 1
+        # print(arr)
+        # modulus by the 3 will give the number which is not the there three times; the required number
+        for index in range(len(arr)): 
+            arr[index] = arr[index] % 3
+            value += arr[index] * (2 ** index)  
+        # As in the bitwise value the negative is tracked with the 1 at the 33rd place    
+        if negCount % 3 > 0:
+            # print(value)
+            value  = value * -1
+            
+        # print(arr)
+        return value
+        
+        
+        
