@@ -1,0 +1,37 @@
+In this question, An array is given : nums, we have move the non zero number in front of the array and zero at trailing positions
+
+class Solution:
+     
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        # i is the iterator to track the non zero numbers
+        i = 0
+        length = len(nums)
+        
+        # here we are moving i to the first zeroth position
+        while i < length and nums[i] != 0:
+            i += 1
+        
+        # index move from first zero place to end of array
+        for index in range(i,len(nums)):
+    
+            # This while loop move index to the available zero place
+            while nums[index] != 0:
+                index = index + 1
+            
+            # here i is moving to the non zero number
+            while i < length and nums[i] == 0:
+                i += 1
+            
+            # Swapping zero to non zero number
+            if i < length and index < length:
+                temp = nums[index]
+                nums[index] = nums[i]
+                nums[i] = temp
+            # moving i to next
+            i += 1
+        
+            
+            
