@@ -1,0 +1,26 @@
+In this question an array is given where i = 0th digit is the most significant and i = len -1 least significant 
+Return the array with given array + 1
+
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        
+        length = len(digits)
+        # as to add 1, so choose carry = 1
+        carry = 1
+        
+        # if digits least significant digit is less than 9 we can return digits with addition of 1
+        if digits[length-1] < 9:
+            digits[length-1] += carry 
+            return digits
+        
+        # Here the loop is traversing from the end of list to starting
+        for iterator in range(length -1, -1, -1):
+            value = digits[iterator] + carry
+            digits[iterator] = value % 10
+            carry = value // 10
+            # return if any digit is less than 9
+            if carry == 0:
+                return digits
+    
+        return [1] + digits
+        
