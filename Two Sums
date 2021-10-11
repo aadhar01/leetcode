@@ -1,0 +1,18 @@
+# An array is given and a target, 
+# To return an list with two elements positions whose sum equals to target,
+# there is only two elements like this in array, and returning array can be of any order
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+    
+        # To make map 
+        count = Counter()
+        
+        for index in range(len(nums)):
+            # checking if the target - current index nums value is there in count keys, if yes then return positions
+            if target - nums[index] in count.keys():
+                return [index, count[target - nums[index]]]
+            # adding elements to count    
+            else:
+                count[nums[index]] = index
+            
