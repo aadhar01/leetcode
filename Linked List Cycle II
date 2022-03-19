@@ -1,0 +1,42 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def detectCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if head == None:
+            return None
+        temp = head.next    ## This step is very important, the slow node should start from the second node
+        jump = head
+        loop = 0
+        while temp != None:
+            if jump.next != None:
+                if jump.next.next != None:
+                    jump = jump.next.next
+                    if temp == jump:
+                        loop = 1
+                        break
+                    
+            else:
+                return None
+            temp = temp.next
+            
+        if loop == 0:
+            return None
+        
+        temp = head
+        while (temp != jump):
+            temp = temp.next
+            jump = jump.next
+            
+        return jump
+        
+        
+        
+        
